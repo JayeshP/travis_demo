@@ -1,4 +1,7 @@
 <?php
-// Hello Program
+/** 
+ * Hello Program
+ *
+ **/
 echo 'Hello' . PHP_EOL;
 ?>
