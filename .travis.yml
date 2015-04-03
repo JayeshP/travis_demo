@@ -5,11 +5,6 @@ php:
 
 before_install:
   - sudo apt-get install -qq beanstalkd python-pip
-  - sudo sed -i 's/^#\(\s*START\)/\1/' /etc/default/beanstalkd
-  - sudo service beanstalkd start
-  - sudo pip install fabric
-
-before_script:
   - pear config-set preferred_state beta
   - pyrus install pear/PHP_CodeSniffer-1.5.6
   - phpenv rehash
