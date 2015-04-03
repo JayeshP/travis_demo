@@ -1,0 +1,18 @@
+language: php
+
+php:
+  - 5.5
+
+before_install:
+  - sudo apt-get install -qq beanstalkd python-pip
+  - sudo sed -i 's/^#\(\s*START\)/\1/' /etc/default/beanstalkd
+  - sudo service beanstalkd start
+  - sudo pip install fabric
+
+before_script:
+  - pear config-set preferred_state beta
+  - pyrus install pear/PHP_CodeSniffer-1.5.6
+  - phpenv rehash
+  - (cd $(pyrus get php_dir | tail -1)/PHP/CodeSniffer/Standards && test -d Symfony2 || git clone -q https://github.com/ajayrungta/Symfony2-coding-standard.git Symfony2)
+
+script: phpcs hello.php
